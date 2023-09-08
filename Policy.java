@@ -1,3 +1,6 @@
+import java.text.NumberFormat;
+
+
 public class Policy
 {
 //define class attributes
@@ -9,6 +12,10 @@ public class Policy
    private boolean smokingStatus;
    private int height;
    private int weight;
+   
+   //currency format
+   NumberFormat fmt = NumberFormat.getCurrencyInstance(); 
+
    
    //default constructor
    public Policy()
@@ -112,4 +119,29 @@ public class Policy
    }
    return price;
    }
+   
+   //print class information
+   public void print() {
+   String smoker;
+   double bmi = getBMI();
+   double price = policyPrice();
+   //convert boolean to proper string
+   if (smokingStatus = true) {
+   smoker = "smoker";
+   } else {
+   smoker = "non-smoker";
+   }
+   //print all class attributes
+      System.out.println("Policy Number: " + policyNumber);
+      System.out.println("Provider Name: " + providerName);
+      System.out.println("Policyholder's First Name: " + firstName);
+      System.out.println("Policyholder's Last Name: " + lastName);
+      System.out.println("Policyholder's Age: " + age);
+      System.out.println("Policyholder's Smoking Status: " + smoker);
+      System.out.println("Policyholder's Height: " + height);
+      System.out.println("Policyholder's Weight: " + weight);
+      System.out.println("Policyholder's BMI: " + bmi);    
+      System.out.println("Policy Price: " + fmt.format(price));
+   }
+   
 }
