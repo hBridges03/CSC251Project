@@ -9,7 +9,7 @@ public class Policy
    private String firstName;
    private String lastName;
    private int age;
-   private boolean smokingStatus;
+   private String smokingStatus;
    private int height;
    private int weight;
    
@@ -25,13 +25,13 @@ public class Policy
       firstName = "";
       lastName = "";
       age = 0;
-      smokingStatus = false;
+      smokingStatus = "non-smoker";
       height = 0;
       weight = 0;
    }
    
    //fully initiated constructor
-   public Policy(int num, String name, String first, String last, int a, boolean smoke, int h, int w) 
+   public Policy(int num, String name, String first, String last, int a, String smoke, int h, int w) 
    {
       policyNumber = num;
       providerName = name;
@@ -90,7 +90,7 @@ public class Policy
       
       @param smoke - smoking status 
    */
-   public void setSmokingStatus(boolean smoke) {
+   public void setSmokingStatus(String smoke) {
       smokingStatus = smoke;
    }
    /*
@@ -157,7 +157,7 @@ public class Policy
       
       @return smokingStatus
    */
-   public boolean getSmokingStatus() {
+   public String getSmokingStatus() {
    return smokingStatus;
    }
    /*
@@ -202,7 +202,7 @@ public class Policy
    price += 75;
    }
    
-   if (smokingStatus = true) {
+   if (smokingStatus == "smoker") {
    price += 100;
    }
    
@@ -216,22 +216,16 @@ public class Policy
       Prints and formats class information.
    */
    public void print() {
-   String smoker;
    double bmi = getBMI();
    double price = policyPrice();
-   //convert boolean to proper string
-   if (smokingStatus = true) {
-   smoker = "smoker";
-   } else {
-   smoker = "non-smoker";
-   }
+ 
    //print all class attributes
       System.out.println("Policy Number: " + policyNumber);
       System.out.println("Provider Name: " + providerName);
       System.out.println("Policyholder's First Name: " + firstName);
       System.out.println("Policyholder's Last Name: " + lastName);
       System.out.println("Policyholder's Age: " + age);
-      System.out.println("Policyholder's Smoking Status: " + smoker);
+      System.out.println("Policyholder's Smoking Status: " + smokingStatus);
       System.out.println("Policyholder's Height: " + height);
       System.out.println("Policyholder's Weight: " + weight);
       System.out.println("Policyholder's BMI: " + bmi);    
