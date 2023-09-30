@@ -56,10 +56,24 @@ public class Demo
          inputFile.close();
          
       //print all classes from the array
-      for(int i =0; i < policies.size(); i++)
+      for(int i = 0; i < policies.size(); i++)
       {
          policies.get(i).print();
          System.out.println("");
       }
+      
+      int smokeCount = 0;
+      int nonSmoker = 0;
+      for(int i = 0; i < policies.size(); i++)
+      {
+         if (policies.get(i).getSmokingStatus() == "smoker") {
+         smokeCount += 1;
+         }
+         else {
+         nonSmoker += 1;
+         }
+      }
+      System.out.println("The number of policies with a smoker is: " + smokeCount);
+      System.out.println("the number of policies with a non-smokers is: " + nonSmoker);
     }
 }
