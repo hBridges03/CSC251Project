@@ -4,8 +4,6 @@ create the policy holder class.
 public class PolicyHolder
 {
 //define class attributes
-   private int policyNumber;
-   private String providerName;
    private String firstName;
    private String lastName;
    private int age;
@@ -17,8 +15,6 @@ public class PolicyHolder
    //default constructor
    public PolicyHolder()
    {
-      policyNumber = 0;
-      providerName = "";
       firstName = "";
       lastName = "";
       age = 0;
@@ -28,10 +24,8 @@ public class PolicyHolder
    }
    
    //fully initiated constructor
-   public PolicyHolder(int num, String name, String first, String last, int a, String smoke, int h, int w) 
+   public PolicyHolder(String first, String last, int a, String smoke, int h, int w) 
    {
-      policyNumber = num;
-      providerName = name;
       firstName = first;
       lastName = last;
       age = a;
@@ -39,25 +33,21 @@ public class PolicyHolder
       height = h;
       weight = w;     
    }
+   
+   //copy constructor
+   public PolicyHolder(PolicyHolder object2)
+   {
+      firstName = object2.firstName;
+      lastName = object2.lastName;
+      age = object2.age;
+      smokingStatus = object2.smokingStatus;
+      height = object2.height;
+      weight = object2.weight;
+      bmi = object2.getBMI();
+   }
 
    //setters for all fields
    
-   /*
-      Sets the value for the policy number.
-      
-      @param number - policy number
-   */
-   public void setPolicyNumber(int number) {
-      policyNumber = number;   
-   }
-   /*
-      Sets the value for the provider name.
-      
-      @param name - provider name
-   */
-   public void setProviderName(String name) {
-      providerName = name;
-   }
    /*
       Sets the value for the first name.
       
@@ -109,22 +99,6 @@ public class PolicyHolder
    
    
    //getters for all fields
-   /*
-      Returns the value for the policy number.
-      
-      @return policyNumber
-   */
-   public int getPolicyNumber() {
-   return policyNumber;
-   }
-   /*
-      Returns the value for the provider name.
-      
-      @return providerName
-   */
-   public String getProviderName() {
-   return providerName;
-   }
    /*
       Returns the value for the first name.
       
@@ -184,6 +158,19 @@ public class PolicyHolder
    return bmi;
    }
    
-
+   /**
+      toString method
+      @return - A string containing the policy holder information
+  */ 
+   public String toString()
+   {
+   //create a string describing the policy holder
+      String str = "Policyholder's First Name: " + firstName + "\nPolicyholder's Last Name: " + lastName + "\nPolicyholder's Age: " + 
+         age + "\nPolicyholder's Smoking Status (Y/N):" + smokingStatus + "\nPolicyholder's Height: " + height + 
+         "\nPolicyholder's Weight: " + weight + "Policyholder's BMI: " + bmi;
+         
+      //return the string
+      return str;
+   }
 
 }
