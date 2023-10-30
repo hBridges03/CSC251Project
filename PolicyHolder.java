@@ -154,7 +154,8 @@ public class PolicyHolder
       @return bmi
    */
    public double getBMI() {
-   bmi = ((weight * 703) / (height* height));
+      final double CONVFACTOR = 703;
+      bmi = (weight * CONVFACTOR) / (height * height);
    return bmi;
    }
    
@@ -163,14 +164,10 @@ public class PolicyHolder
       @return - A string containing the policy holder information
   */ 
    public String toString()
-   {
-   //create a string describing the policy holder
-      String str = "Policyholder's First Name: " + firstName + "\nPolicyholder's Last Name: " + lastName + "\nPolicyholder's Age: " + 
+   {   
+      return String.format("Policyholder's First Name: " + firstName + "\nPolicyholder's Last Name: " + lastName + "\nPolicyholder's Age: " + 
          age + "\nPolicyholder's Smoking Status (Y/N):" + smokingStatus + "\nPolicyholder's Height: " + height + 
-         "\nPolicyholder's Weight: " + weight + "Policyholder's BMI: " + bmi;
-         
-      //return the string
-      return str;
+         "\nPolicyholder's Weight: " + weight + "\nPolicyholder's BMI: %.2f", getBMI());
    }
 
 }

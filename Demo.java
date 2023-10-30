@@ -16,6 +16,8 @@ public class Demo
          String input = "";
          String providerName = "", firstName = "", lastName = "", smokingStatus = "non-smoker";
          int policyNumber = 0, age = 0, height = 0, weight = 0;
+         int counter = 0;
+         int smokerCount = 0, nonSmokerCount = 0;
          
          //create an array to hold each class object
          ArrayList<Policy> policies = new ArrayList<Policy>();
@@ -41,6 +43,7 @@ public class Demo
             
             input = inputFile.nextLine(); 
             weight = Integer.parseInt(input);
+                     
             
             //clears next line
              if(inputFile.hasNext())
@@ -48,32 +51,40 @@ public class Demo
                inputFile.nextLine();
                //another??
             }
-            //create a class object and store it in the array.
-            Policy p = new Policy(policyNumber, providerName, firstName, lastName, age, smokingStatus, height, weight);
+            //create a policy holder object
+            PolicyHolder pHolder = new PolicyHolder(firstName, lastName, age, smokingStatus, height, weight);
+            
+            //track number of smokers and non-smokers
+            if(pHolder.getSmokingStatus().equalsIgnoreCase("smoker")) {
+               smokerCount += 1;
+            }
+            else nonSmokerCount += 1;
+            
+            //create a policy object with new policy holder object
+            Policy p = new Policy(policyNumber, providerName, pHolder);
+            //add new policy to array
             policies.add(p);
-         }
+            
+
+         }  
          //close the input file
          inputFile.close();
          
-      //print all classes from the array
-      for(int i = 0; i < policies.size(); i++)
-      {
-         policies.get(i).print();
-         System.out.println("");
-      }
+      //print all required classes and fields
       
-      int smokeCount = 0;
-      int nonSmoker = 0;
       for(int i = 0; i < policies.size(); i++)
       {
-         if (policies.get(i).getSmokingStatus() == "smoker") {
-         smokeCount += 1;
-         }
-         else {
-         nonSmoker += 1;
-         }
+      //print array
+         System.out.println(policies.get(i));
+         System.out.println("\n");
       }
-      System.out.println("The number of policies with a smoker is: " + smokeCount);
-      System.out.println("the number of policies with a non-smokers is: " + nonSmoker);
+      //print number of policies created
+      counter = policies.size() - 1;
+      System.out.print("There were " + policies.get(counter).getInstanceCount() + " Policy objects created.\n");
+      
+      //print number of smokers
+      System.out.println("\nThe number of policies with a smoker is: " + smokerCount);
+      System.out.println("The number of policies with a non-smoker is: " + nonSmokerCount);
+
     }
 }

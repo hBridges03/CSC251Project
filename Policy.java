@@ -73,6 +73,13 @@ public class Policy
   public PolicyHolder getPolicyHolder() {
      return new PolicyHolder(policyHolder);
   }
+  /*
+      getInstanceCount method
+      @return - return the instance count
+  */
+  public int getInstanceCount() {
+  return instanceCount;
+  }
    
     /*
       Calculates the policy price based on BMI, smoking status, and age.
@@ -80,20 +87,26 @@ public class Policy
       @return price
    */
    public double getPrice() {
-      price = 600;
+      final double BASE_PRICE = 600;
+      final double ADDITIONAL_FEE_AGE = 75;
+      final double ADDITIONAL_FEE_SMOKING = 100;
+      final double ADDITIONAL_FEE_PER_BMI = 20;
+      
+      final int AGE_THRESHOLD = 50;
+      final int BMI_THRESHOLD = 35;
+      
+      double price = BASE_PRICE;
+
       double bmi = policyHolder.getBMI();
      
-      if (policyHolder.getAge() > 50){
-         price += 75;
-      }
+      if(policyHolder.getAge() > AGE_THRESHOLD)
+         price += ADDITIONAL_FEE_AGE;
+         
+      if(policyHolder.getSmokingStatus().equalsIgnoreCase("smoker"))
+         price += ADDITIONAL_FEE_SMOKING;
       
-      if (policyHolder.getSmokingStatus() == "smoker") {
-         price += 100;
-      }
-      
-      if (bmi > 35) {
-         price += (bmi - 35) * 20;
-      }
+      if(policyHolder.getBMI() > BMI_THRESHOLD)
+         price += ((policyHolder.getBMI() - BMI_THRESHOLD) * ADDITIONAL_FEE_PER_BMI);
       return price;
    }
    
