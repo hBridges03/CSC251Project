@@ -5,20 +5,19 @@ public class Policy
    private String providerName;
    private double price = 0.0;
    private PolicyHolder policyHolder; //Instance of the PolicyHolder class
+   private static int instanceCount = 0; //static field to track number of policy objects
 
-   //default constructor
-   public Policy()
-   {
-      policyNumber = 0;
-      providerName = "";
-   }
-   //fully initiated constructor
+   /* Constructor to initialize fields
+   @param num - policy umber
+   @param name - provider name
+   @param holder - a PolicyHolder object
+   */
    public Policy(int num, String name, PolicyHolder holder)
    {
       policyNumber = num;
       providerName = name;
       policyHolder = new PolicyHolder(holder);
-
+      instanceCount++; //increment static variable
    }
 
    
