@@ -1,61 +1,111 @@
-import java.text.NumberFormat;
-
-
 public class Policy
 {
 //define class attributes
-
+   private int policyNumber;
+   private String providerName;
    private double price = 0.0;
-   
-   //currency format
-   NumberFormat fmt = NumberFormat.getCurrencyInstance(); 
+   private PolicyHolder policyHolder; //Instance of the PolicyHolder class
+
+   //default constructor
+   public Policy()
+   {
+      policyNumber = 0;
+      providerName = "";
+   }
+   //fully initiated constructor
+   public Policy(int num, String name, PolicyHolder holder)
+   {
+      policyNumber = num;
+      providerName = name;
+      policyHolder = new PolicyHolder(holder);
+
+   }
 
    
    //setters for all fields
    
+   /*
+      Sets the value for the policy number.
+      
+      @param number - policy number
+   */
+   public void setPolicyNumber(int number) {
+      policyNumber = number;   
+   }
+
+   /*
+      Sets the value for the provider name.
+      
+      @param name - provider name
+   */
+   public void setProviderName(String name) {
+      providerName = name;
+   }
+   
+   /**
+      @param holder - a PolicyHolder object  
+   */   
+   public void setPolicyHolder(PolicyHolder holder) {
+      policyHolder = new PolicyHolder(holder);
+   }
+   
    //getters for all fields
+   /*
+      Returns the value for the policy number.
+      
+      @return policyNumber
+   */
+   public int getPolicyNumber() {
+   return policyNumber;
+   }
+   /*
+      Returns the value for the provider name.
+      
+      @return providerName
+   */
+   public String getProviderName() {
+   return providerName;
+   }
+
+  /**
+      getPolicyHolder method
+      @return - return a reference to a copy of this policy's PolicyHolder object
+  */
+  public PolicyHolder getPolicyHolder() {
+     return new PolicyHolder(policyHolder);
+  }
    
     /*
       Calculates the policy price based on BMI, smoking status, and age.
       
       @return price
    */
-   public double policyPrice() {
-   price = 600;
-   double bmi = getBMI();
-  
-   if (age > 50){
-   price += 75;
+   public double getPrice() {
+      price = 600;
+      double bmi = policyHolder.getBMI();
+     
+      if (policyHolder.getAge() > 50){
+         price += 75;
+      }
+      
+      if (policyHolder.getSmokingStatus() == "smoker") {
+         price += 100;
+      }
+      
+      if (bmi > 35) {
+         price += (bmi - 35) * 20;
+      }
+      return price;
    }
    
-   if (smokingStatus == "smoker") {
-   price += 100;
-   }
    
-   if (bmi > 35) {
-   price += (bmi - 35) * 20;
+  /**
+      toString method
+      @return - A string containing the policy information
+  */ 
+      public String toString()
+   {
+         return String.format("Policy Number: " + policyNumber + "\nProvider Name: " + providerName + "\n" + policyHolder.toString() +
+             "\nPolicy Price: $%.2f", getPrice());
    }
-   return price;
-   }
-   
-   /*
-      Prints and formats class information.
-   */
-   public void print() {
-   double bmi = getBMI();
-   double price = policyPrice();
- 
-   //print all class attributes
-      System.out.println("Policy Number: " + policyNumber);
-      System.out.println("Provider Name: " + providerName);
-      System.out.println("Policyholder's First Name: " + firstName);
-      System.out.println("Policyholder's Last Name: " + lastName);
-      System.out.println("Policyholder's Age: " + age);
-      System.out.println("Policyholder's Smoking Status: " + smokingStatus);
-      System.out.println("Policyholder's Height: " + height);
-      System.out.println("Policyholder's Weight: " + weight);
-      System.out.println("Policyholder's BMI: " + bmi);    
-      System.out.println("Policy Price: " + fmt.format(price));
-   }
-   
 }
