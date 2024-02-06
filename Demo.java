@@ -75,12 +75,13 @@ public class Demo
       for(int i = 0; i < policies.size(); i++)
       {
       //print array
-         System.out.println(policies.get(i));
          System.out.println("\n");
+         System.out.println(policies.get(i));
+
       }
       //print number of policies created
       counter = policies.size() - 1;
-      System.out.print("There were " + policies.get(counter).getInstanceCount() + " Policy objects created.\n");
+      System.out.print("\nThere were " + policies.get(counter).getInstanceCount() + " Policy objects created.\n");
       
       //print number of smokers
       System.out.println("\nThe number of policies with a smoker is: " + smokerCount);
