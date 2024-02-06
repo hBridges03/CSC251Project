@@ -166,7 +166,7 @@ public class PolicyHolder
    public String toString()
    {   
       return String.format("Policyholder's First Name: " + firstName + "\nPolicyholder's Last Name: " + lastName + "\nPolicyholder's Age: " + 
-         age + "\nPolicyholder's Smoking Status (Y/N):" + smokingStatus + "\nPolicyholder's Height: " + height + 
+         age + "\nPolicyholder's Smoking Status: " + smokingStatus + "\nPolicyholder's Height: " + height + 
          "\nPolicyholder's Weight: " + weight + "\nPolicyholder's BMI: %.2f", getBMI());
    }
 
